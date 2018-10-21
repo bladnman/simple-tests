@@ -1,3 +1,6 @@
+// set up a base reporter
+let reporter = new BaseClass({name:'reporter'});
+
 function main() {
   new Kitten({name:'kitten'});
 }
