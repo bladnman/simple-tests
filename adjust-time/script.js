@@ -21,15 +21,17 @@ class Adjuster extends window.BaseClass {
     this.adjustToSeconds    = properties.adjustToSeconds;
   }
   adjust(seconds) {
-    let fullFits            = ~~(seconds / this.adjustToSeconds);
-    let remaining           = seconds % this.adjustToSeconds;
+    let adjusted = this.getAdjusted(seconds, this.adjustToSeconds);
+    this.log(`[${seconds}]s -> [${adjusted}]s`);
+  }
+  getAdjusted(seconds, onSeconds) {
+    let fullFits            = ~~(seconds / onSeconds);
+    let remaining           = seconds % onSeconds;
     // round up any remaining
     if (remaining) {
       fullFits              += remaining > 0 ? 1 : -1;
     }
 
-    let adjusted            = fullFits * this.adjustToSeconds;
-
-    this.log(`[${seconds}]s -> [${adjusted}]s`);
+    return fullFits * onSeconds;
   }
 }
